@@ -3,7 +3,7 @@
 ## nginx
 
 ```
-	docker run --name nginx -p 80:80 -v /Users/lizhixin/dev/docker/nginx:/usr/share/nginx/html:ro -d nginx
+docker run --name nginx -p 80:80 -v /Users/lizhixin/dev/docker/nginx:/usr/share/nginx/html:ro -d nginx
 
 ```
 
@@ -29,7 +29,7 @@ osx中使用mysql镜像创建容器会出现volumes无权限加载的情况
 生成容器
 
 ```
-	docker run -it --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /Users/lizhixin/dev/edx/mysql:/var/lib/mysql mysql2
+docker run -it --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /Users/lizhixin/dev/edx/mysql:/var/lib/mysql mysql2
 
 ```
 
@@ -46,8 +46,36 @@ osx中使用mysql镜像创建容器会出现volumes无权限加载的情况
 ```
 
 
-## 容器中设置时间区间
-```
-	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+## windows 下使用 docker
 
+安装 Kitematic ，之后使用CMD，运行docker命令
+提示无法连接到 daemon
+
+通过 docker-machine ip 查询到machine的IP
+设置下面的系统环境变量
+```
+	export DOCKER_HOST=tcp://192.168.99.100:2376
+	export DOCKER_MACHINE_NAME=default
+	export DOCKER_TLS_VERIFY=1
+	export DOCKER_CERT_PATH=C:\Users\li\.docker\machine\machines\default
+```
+之后就可以正常使用了
+
+但仅仅只能通过本机访问
+通过设置virtualbox可以使用局域网中的IP（桥接网络），之后重新通过docker-machine regenerate-certs 生成certs
+
+
+## 安装成功后需要配置日期时间
+
+设置ubuntu的时区
+
+```
+echo "Asia/shanghai" > /etc/timezone
+```
+
+但PHP或MYSQL还是需要单独设置
+找了好久终于找到了解决方法,在容器中执行以下命令就可以了，MYSQL的容器设置后还是需要重启的
+http://www.opstool.com/article/320
+```
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
