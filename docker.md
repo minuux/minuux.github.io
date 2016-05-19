@@ -79,3 +79,8 @@ http://www.opstool.com/article/320
 ```
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
+
+## boot2docker 默认密码
+```
+docker:tcuser
+```
