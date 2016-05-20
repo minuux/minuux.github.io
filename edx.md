@@ -63,3 +63,71 @@ exit
 sudo /edx/bin/supervisorctl restart edxapp:
 
 ```
+
+## 脚本执行时间
+
+```
+PLAY RECAP ******************************************************************** 
+INFO:ansible.callback_plugins.datadog_tasks_timing:edxapp | checkout edx-platform repo into {{ edxapp_code_dir }} ----------------- 544.58s
+INFO:ansible.callback_plugins.datadog_tasks_timing:mongo | install mongo server and recommends ------------------------------------ 317.94s
+INFO:ansible.callback_plugins.datadog_tasks_timing:edxapp_common | Install system packages ----------------------------------------- 96.93s
+INFO:ansible.callback_plugins.datadog_tasks_timing:mysql | Install mysql-5.6 and dependencies -------------------------------------- 58.14s
+INFO:ansible.callback_plugins.datadog_tasks_timing:rabbitmq | install rabbit package using gdebi ----------------------------------- 44.68s
+INFO:ansible.callback_plugins.datadog_tasks_timing:edxapp | install system packages on which LMS and CMS rely ---------------------- 44.03s
+INFO:ansible.callback_plugins.datadog_tasks_timing:rabbitmq | install python-software-properties if debian ------------------------- 31.26s
+INFO:ansible.callback_plugins.datadog_tasks_timing:edxapp | add ppas for current versions of nodejs -------------------------------- 30.02s
+INFO:ansible.callback_plugins.datadog_tasks_timing:mongo | add the mongodb repo to the sources list -------------------------------- 28.09s
+INFO:ansible.callback_plugins.datadog_tasks_timing:mysql | Install MySQL community apt repositories -------------------------------- 21.41s
+INFO:ansible.callback_plugins.datadog_tasks_timing:
+Playbook edx_sandbox finished: Thu May 19 14:48:45 2016, 208 total tasks.  0:22:18 elapsed.
+
+```
+
+## 配置远程服务
+
+### mysql
+数据库
+- edxapp
+- edxapp_csmh
+
+用户 edxapp001:password,root:password
+
+### mongo
+数据库 edxapp
+用户 edxapp:password
+
+```
+use edxapp
+db.createUser(
+   {
+     user: "edxapp",
+     pwd: "password",
+     roles: [ "readWrite"]
+   }
+)
+
+use cs_comments_service
+db.createUser(
+   {
+     user: "cs_comments_service",
+     pwd: "password",
+     roles: [ "readWrite"]
+   }
+)
+```
+
+### memcahce
+
+
+### edx-platform
+修改代码，不要从github上复制代码，直接从本地复制
+修改 checkout edx-platform repo into {{ edxapp_code_dir }}
+```
+- name: checkout edx-platform repo into {{ edxapp_code_dir }}
+  shell: cp -R /vagrant/edx-platform {{ edxapp_code_dir }}
+  sudo_user: "{{ edxapp_user }}"
+  register: edxapp_platform_checkout
+  tags:
+    - install
+    - install:code
+```
