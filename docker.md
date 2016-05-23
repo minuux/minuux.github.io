@@ -34,7 +34,7 @@ docker run -it --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /Users
 ```
 
 ## docker-machine 使用代理
-
+修改 vi /var/lib/boot2docker/profile，或者创建的时候就设置
 ```
 	docker-machine create -d virtualbox \
     --engine-env HTTP_PROXY=http://192.168.1.1:8080 \
