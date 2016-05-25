@@ -131,3 +131,12 @@ db.createUser(
     - install
     - install:code
 ```
+
+
+### 调整源地址
+修改palybooks/roles/common_vars/default/main.yml
+```
+COMMON_PYPI_MIRROR_URL: 'http://mirrors.aliyun.com/pypi/simple'
+COMMON_NPM_MIRROR_URL: 'https://registry.npm.taobao.org'
+
+```
