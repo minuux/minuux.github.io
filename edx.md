@@ -63,6 +63,13 @@ exit
 sudo /edx/bin/supervisorctl restart edxapp:
 
 ```
+## Docker
+edxops/edxapp docker image执行 supervisorctl
+```
+/edx/app/supervisor/venvs/supervisor/bin/supervisorctl
+```
+日志 
+/edx/var/log
 
 ## 脚本执行时间
 
