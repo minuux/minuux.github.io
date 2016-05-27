@@ -6,14 +6,14 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Minuux
+title: minuux
 email: 
 description: > # this means to ignore newlines until "baseurl:"
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "minuux.github.io" # the base hostname & protocol for your site
-#twitter_username: jekyllrb
-#github_username:  jekyll
+twitter_username: minuux
+github_username:  minuux
 
 # Build settings
 markdown: kramdown
