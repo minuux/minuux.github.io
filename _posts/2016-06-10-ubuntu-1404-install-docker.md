@@ -59,6 +59,7 @@ sudo apt-get -Y install docker-engine
 sudo groupadd docker
 sudo usermod -aG docker vagrant
 ```
+
 ### test docker
 
 ```
