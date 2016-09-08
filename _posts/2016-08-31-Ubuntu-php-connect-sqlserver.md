@@ -50,3 +50,31 @@ protected function _version()
 	}
 
 ```
+
+## 使用链接服务器
+
+如果链接sqlserver后，使用了链接服务器就需要设置参数，否则会提示错误
+
+**Error: Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection**
+
+在每次执行前需要设置以下参数。
+
+```
+SET ANSI_NULLS ON ;
+SET ANSI_WARNINGS ON;
+
+```
+如果需要在codeigniter中使用，需要修改mssql_driver.php,修改 function db_connect(),增加执行的sql语句
+
+```
+
+$this->simple_query("SET ANSI_NULLS ON ;SET ANSI_WARNINGS ON;");
+$query = $this->query('SELECT CASE WHEN (@@OPTIONS | 256) = @@OPTIONS THEN 1 ELSE 0 END AS qi');
+
+```
+
+## 最后
+
+如果你使用docker,可以使用[https://github.com/ngineered/nginx-php-fpm](https://github.com/ngineered/nginx-php-fpm)，
+在dockerfile中增加 **php5-mssql** 就可以正常使用了！！！
+
