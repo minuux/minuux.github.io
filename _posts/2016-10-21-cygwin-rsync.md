@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "rsync"
+title:  "cygwin 部署 rsync"
 date:   2016-10-21 16:26:31 +0000
 categories: notes
 ---
