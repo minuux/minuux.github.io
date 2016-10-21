@@ -7,7 +7,7 @@
   下载cygwin后安装rsync,反正我选择后就可以了，或许还需要安装ssh
 
 ## 配置rsync
-
+gist:[rsyncd.conf](https://gist.github.com/minuux/02e28a90d87a58db3492c548b2200e55)
 ```
 # 写入之后需要使用到的rsync密码文件，文件名可以选择自己喜欢的名称，和配置文件中一致即可
 # echo "minuux:123456" >> /etc/rsync_server.passwd
