@@ -9,8 +9,8 @@ categories: notes
 ## 为子域名*设置动态ip
 
 安装好梅林小宝固件后，在soft center中可以安装ddnspod，通过脚本来更新域名ip。
-但是，我需要设置的子域名是 *.test.com,直接保存后，提示 record line invailid。
-参考 <http://www.anrip.com/ddnspod> ,将脚本保存为utf-8格式，设置后的确可以保存成功，但是我在dnspod中设置的*子域名就变成了@前缀了
+但是，我需要设置的子域名是 \*.test.com,直接保存后，提示 record line invailid。
+参考 <http://www.anrip.com/ddnspod> ,将脚本保存为utf-8格式，设置后的确可以保存成功，但是我在dnspod中设置的\*子域名就变成了@前缀了
 
 所以最后只能通过修改梅林小宝固件中的文件来处理了（梅林小宝版本：380.63_X7.2）
 
